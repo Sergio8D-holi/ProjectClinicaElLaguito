@@ -2,6 +2,7 @@ package co.edu.uptc.domain;
 
 import java.time.LocalTime;
 
+
 public class MedicalAppoinmet {
 	private int idMedicalAppoinmet;
 	private LocalTime timeAppoinmet;
@@ -39,5 +40,5 @@ public class MedicalAppoinmet {
 	}
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
-	}
+	} 	
 }
