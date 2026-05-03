@@ -1,5 +1,7 @@
 package co.edu.uptc.domain;
 
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import co.edu.uptc.enums.IdentificationTypeEnum;
@@ -24,7 +26,7 @@ public class Patient {
 	private IdentificationTypeEnum identificationType;
 	
 	/**Atributo que determina el numero de identificacion del paciente**/
-	private int idPatient;
+	private Long idPatient;
 	
 	/**Atributo que determina el primer nombre del paciente**/
 	private String firstName;
@@ -33,7 +35,7 @@ public class Patient {
 	private String lastName;
 	
 	/**Atributo que determina el historial de medicacion del paciente**/
-	private List<String> medicationHistory;
+	private LinkedHashSet<String> medicationHistory;
 	
 	/**Atributo que determina la prioridad de atencion del paciente**/
 	private PriorityEnum priority;
@@ -53,8 +55,8 @@ public class Patient {
 	 * @param medicationHistory Parametro que determina el historial de medicacion del paciente
 	 * @param priority Parametro que determina la prioridad de atencion del paciente
 	 * */
-	public Patient(IdentificationTypeEnum identificationType, int idPatient, String firstName, String lastName,
-			List<String> medicationHistory, PriorityEnum priority) {
+	public Patient(IdentificationTypeEnum identificationType, Long idPatient, String firstName, String lastName,
+			LinkedHashSet<String> medicationHistory, PriorityEnum priority) {
 		super();
 		this.identificationType = identificationType;
 		this.idPatient = idPatient;
@@ -81,14 +83,14 @@ public class Patient {
 	/**<b>Descripcion: </b> Retorna el valor de la identificacion
 	 * @return idPatient retorna la identificacion del paciente
 	 * */
-	public int getIdPatient() {
+	public Long getIdPatient() {
 		return idPatient;
 	}
 
 	/**<b>Descripcion: </b> Retorna el valor de la identificacion
 	 * @param idPatient Representa la nueva identificacicon del paciente
 	 * */
-	public void setIdPatient(int idPatient) {
+	public void setIdPatient(Long idPatient) {
 		this.idPatient = idPatient;
 	}
 
@@ -123,14 +125,14 @@ public class Patient {
 	/**<b>Descripcion: </b> Retorna el valor del historial de medicacion
 	 * @return medicationHistory retorna historial de medicacion del paciente
 	 * */
-	public List<String> getMedicationHistory() {
+	public LinkedHashSet<String> getMedicationHistory() {
 		return medicationHistory;
 	}
 
 	/**<b>Descripcion: </b> Retorna el valor del historial de medicacion
 	 * @param medicationHistory Representa el nuevo historial de medicacion del paciente
 	 * */
-	public void setMedicationHistory(List<String> medicationHistory) {
+	public void setMedicationHistory(LinkedHashSet<String> medicationHistory) {
 		this.medicationHistory = medicationHistory;
 	}
 
