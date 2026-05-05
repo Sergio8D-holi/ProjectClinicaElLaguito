@@ -14,7 +14,7 @@ public class PatientRepository {
 		this.patients = new HashSet<Patient>();
 	}
 	
-	public boolean addProduct(Patient patient) {
+	public boolean addPatient(Patient patient) {
 		return this.patients.add(patient);
 	}
 	
@@ -22,13 +22,13 @@ public class PatientRepository {
 		return new HashSet<>(patients);
 	}
 	
-	public Patient findProductById(int idPatient) {
+	public Patient findPatientById(Long idPatient) {
 		return this.patients.stream()
 				.filter(p -> Objects.equals(p.getIdPatient(), idPatient) )
 				.findFirst().orElse(null);
 	}
 	
-	public void updateProduct(Patient newPatient) {
+	public void updatePatient(Patient newPatient) {
 		if (newPatient == null || newPatient.getIdPatient() == 0) {
 		    return;
 		}

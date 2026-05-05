@@ -1,15 +1,16 @@
 package co.edu.uptc.domain;
 
 import java.time.LocalTime;
+import java.util.Objects;
 
 
 public class MedicalAppoinmet {
-	private int idMedicalAppoinmet;
+	private Long idMedicalAppoinmet;
 	private LocalTime timeAppoinmet;
 	private Patient patient;
 	private Doctor doctor;
 	
-	public MedicalAppoinmet(int idMedicalAppoinmet, LocalTime timeAppoinmet, Patient patient, Doctor doctor) {
+	public MedicalAppoinmet(Long idMedicalAppoinmet, LocalTime timeAppoinmet, Patient patient, Doctor doctor) {
 		super();
 		this.idMedicalAppoinmet = idMedicalAppoinmet;
 		this.timeAppoinmet = timeAppoinmet;
@@ -17,10 +18,10 @@ public class MedicalAppoinmet {
 		this.doctor = doctor;
 	}
 	
-	public int getIdMedicalAppoinmet() {
+	public Long getIdMedicalAppoinmet() {
 		return idMedicalAppoinmet;
 	}
-	public void setIdMedicalAppoinmet(int idMedicalAppoinmet) {
+	public void setIdMedicalAppoinmet(Long idMedicalAppoinmet) {
 		this.idMedicalAppoinmet = idMedicalAppoinmet;
 	}
 	public LocalTime getTimeAppoinmet() {
@@ -40,5 +41,25 @@ public class MedicalAppoinmet {
 	}
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idMedicalAppoinmet);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MedicalAppoinmet other = (MedicalAppoinmet) obj;
+		return Objects.equals(idMedicalAppoinmet, other.idMedicalAppoinmet);
 	} 	
+	
+	
+	
 }

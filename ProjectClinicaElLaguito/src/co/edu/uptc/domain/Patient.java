@@ -1,8 +1,7 @@
 package co.edu.uptc.domain;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.Objects;
 
 import co.edu.uptc.enums.IdentificationTypeEnum;
 import co.edu.uptc.enums.PriorityEnum;
@@ -18,6 +17,7 @@ public class Patient {
 	  idPatient
 	  firstName
 	  lastName
+	  email
 	  medicationHistory
 	  priority
 */
@@ -30,6 +30,8 @@ public class Patient {
 	
 	/**Atributo que determina el primer nombre del paciente**/
 	private String firstName;
+	
+	private String email;
 	
 	/**Atributo que determina el apellido del paciente**/
 	private String lastName;
@@ -55,15 +57,24 @@ public class Patient {
 	 * @param medicationHistory Parametro que determina el historial de medicacion del paciente
 	 * @param priority Parametro que determina la prioridad de atencion del paciente
 	 * */
-	public Patient(IdentificationTypeEnum identificationType, Long idPatient, String firstName, String lastName,
-			LinkedHashSet<String> medicationHistory, PriorityEnum priority) {
+	public Patient(IdentificationTypeEnum identificationType, Long idPatient, String firstName, String email,
+			String lastName, LinkedHashSet<String> medicationHistory, PriorityEnum priority) {
 		super();
 		this.identificationType = identificationType;
 		this.idPatient = idPatient;
 		this.firstName = firstName;
+		this.email = email;
 		this.lastName = lastName;
 		this.medicationHistory = medicationHistory;
 		this.priority = priority;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**<b>Descripcion: </b> Retorna el valor del tipo de identificacion
@@ -149,4 +160,25 @@ public class Patient {
 	public void setPriority(PriorityEnum priority) {
 		this.priority = priority;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.idPatient);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Patient auxPatient = (Patient) obj;
+		return this.email.equals(auxPatient.email) && this.idPatient.equals(auxPatient.idPatient)
+				&& identificationType == auxPatient.identificationType;
+	}
+	
+	
+	
 }

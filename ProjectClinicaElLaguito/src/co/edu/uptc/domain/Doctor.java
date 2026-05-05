@@ -1,5 +1,7 @@
 package co.edu.uptc.domain;
 
+import java.util.Objects;
+
 import co.edu.uptc.enums.IdentificationTypeEnum;
 
 /**<b> Descripcion: </b> Clase del modelo que representa la 
@@ -21,7 +23,7 @@ public class Doctor {
 	private IdentificationTypeEnum identificationType;
 	
 	/**Atributo que determina el numero de identificacion del medico**/
-	private int medicalId;
+	private Long medicalId;
 	
 	/**Atributo que determina el primer nombre del medico**/
 	private String firstName;
@@ -49,7 +51,7 @@ public class Doctor {
 	 * @param speciality Parametro que determina la especialidad del medico
 	 * @param yearsOfExperience Parametro que determina los años de experiencia del medico
 	 * */
-	public Doctor(IdentificationTypeEnum identificationType, int medicalId, String firstName, String lastName,
+	public Doctor(IdentificationTypeEnum identificationType, Long medicalId, String firstName, String lastName,
 			String specialty, int yearsOfExperience) {
 		super();
 		this.identificationType = identificationType;
@@ -77,14 +79,14 @@ public class Doctor {
 	/**<b>Descripcion: </b> Retorna el valor del numero de identificacion
 	 * @return medicalId retorna el numero de identificacion del medico
 	 * */
-	public int getMedicalId() {
+	public Long getMedicalId() {
 		return medicalId;
 	}
 
 	/**<b>Descripcion: </b> Retorna el valor del numero de identificacion
 	 * @param medicalId Representa el nuevo numero de identificacion del medico
 	 * */
-	public void setMedicalId(int medicalId) {
+	public void setMedicalId(Long medicalId) {
 		this.medicalId = medicalId;
 	}
 
@@ -143,6 +145,24 @@ public class Doctor {
 	public void setYearsOfExperience(int yearsOfExperience) {
 		this.yearsOfExperience = yearsOfExperience;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(identificationType, medicalId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Doctor auxDoctor = (Doctor) obj;
+		return identificationType == auxDoctor.identificationType && this.medicalId.equals(auxDoctor.medicalId);
+	}
+	
 	
 	
 }	
