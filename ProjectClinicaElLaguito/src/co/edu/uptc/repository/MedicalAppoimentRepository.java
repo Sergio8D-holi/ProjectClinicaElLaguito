@@ -9,6 +9,10 @@ import co.edu.uptc.domain.MedicalAppoinmet;
 public class MedicalAppoimentRepository {
 	private Set<MedicalAppoinmet> medicalAppoiments;
 	
+	public MedicalAppoimentRepository() {
+		super();
+	}
+
 	public MedicalAppoimentRepository(Set<MedicalAppoinmet> medicalAppoiments) {
 		super();
 		this.medicalAppoiments = medicalAppoiments;

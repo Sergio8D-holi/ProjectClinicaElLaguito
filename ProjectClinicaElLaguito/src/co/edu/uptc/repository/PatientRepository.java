@@ -8,6 +8,10 @@ import co.edu.uptc.domain.Patient;
 
 public class PatientRepository {
 	private Set<Patient> patients;
+	
+	public PatientRepository() {
+		super();
+	}
 
 	public PatientRepository(Set<Patient> patients) {
 		super();
