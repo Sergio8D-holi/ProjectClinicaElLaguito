@@ -9,6 +9,12 @@ import co.edu.uptc.repository.MedicalAppoimentRepository;
 public class MedicalAppoimentService {
 	private MedicalAppoimentRepository medicalAppoimentRepository;
 
+	
+	public MedicalAppoimentService() {
+		super();
+		this.medicalAppoimentRepository = new MedicalAppoimentRepository();
+	}
+
 	public MedicalAppoimentService(MedicalAppoimentRepository medicalAppoimentRepository) {
 		super();
 		this.medicalAppoimentRepository = new MedicalAppoimentRepository();

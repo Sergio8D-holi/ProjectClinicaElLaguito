@@ -178,6 +178,13 @@ public class Patient {
 		return this.email.equals(auxPatient.email) && this.idPatient.equals(auxPatient.idPatient)
 				&& identificationType == auxPatient.identificationType;
 	}
+
+	@Override
+	public String toString() {
+		return "Patient [identificationType=" + identificationType + ", idPatient=" + idPatient + ", firstName="
+				+ firstName + ", email=" + email + ", lastName=" + lastName + ", medicationHistory=" + medicationHistory
+				+ ", priority=" + priority + "]";
+	}
 	
 	
 	

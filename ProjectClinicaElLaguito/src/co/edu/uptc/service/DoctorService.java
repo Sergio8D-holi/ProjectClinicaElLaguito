@@ -9,6 +9,11 @@ import co.edu.uptc.repository.DoctorRepository;
 public class DoctorService {
 	private DoctorRepository doctorRepository;
 
+	public DoctorService() {
+		super();
+		this.doctorRepository = new DoctorRepository();
+	}
+
 	public DoctorService(DoctorRepository doctorRepository) {
 		super();
 		this.doctorRepository = new DoctorRepository();
