@@ -1,19 +1,20 @@
 package co.edu.uptc.domain;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
 
 public class MedicalAppoinmet {
 	private Long idMedicalAppoinmet;
-	private LocalTime timeAppoinmet;
+	private LocalDateTime dateTimeAppoinmet;
 	private Patient patient;
 	private Doctor doctor;
 	
-	public MedicalAppoinmet(Long idMedicalAppoinmet, LocalTime timeAppoinmet, Patient patient, Doctor doctor) {
+	public MedicalAppoinmet(Long idMedicalAppoinmet, LocalDateTime dateTimeAppoinmet, Patient patient, Doctor doctor) {
 		super();
 		this.idMedicalAppoinmet = idMedicalAppoinmet;
-		this.timeAppoinmet = timeAppoinmet;
+		this.dateTimeAppoinmet = dateTimeAppoinmet;
 		this.patient = patient;
 		this.doctor = doctor;
 	}
@@ -24,11 +25,11 @@ public class MedicalAppoinmet {
 	public void setIdMedicalAppoinmet(Long idMedicalAppoinmet) {
 		this.idMedicalAppoinmet = idMedicalAppoinmet;
 	}
-	public LocalTime getTimeAppoinmet() {
-		return timeAppoinmet;
+	public LocalDateTime getDateTimeAppoinmet() {
+		return dateTimeAppoinmet;
 	}
-	public void setTimeAppoinmet(LocalTime timeAppoinmet) {
-		this.timeAppoinmet = timeAppoinmet;
+	public void setTimeAppoinmet(LocalDateTime dateTimeAppoinmet) {
+		this.dateTimeAppoinmet = dateTimeAppoinmet;
 	}
 	public Patient getPatient() {
 		return patient;

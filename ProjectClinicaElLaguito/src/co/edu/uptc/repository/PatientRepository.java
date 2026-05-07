@@ -7,7 +7,7 @@ import java.util.Set;
 import co.edu.uptc.domain.Patient;
 
 public class PatientRepository {
-	private Set<Patient> patients;
+	private Set<Patient> patients = new HashSet<Patient>();
 	
 	public PatientRepository() {
 		super();
