@@ -4,7 +4,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import co.edu.uptc.domain.Doctor;
+import co.edu.uptc.domain.Patient;
 
 public class DoctorRepository {
 	private Set<Doctor> doctors = new HashSet<Doctor>();
@@ -22,8 +25,13 @@ public class DoctorRepository {
 		return this.doctors.add(doctor);
 	}
 	
-	public Set<Doctor> findAll(){
-		return new HashSet<>(doctors);
+	public void findAll(){
+		StringBuilder sb = new StringBuilder("Pacientes:\n");
+        for (Doctor elemento : doctors) {
+            sb.append("• ").append(elemento.toString()).append("\n");
+            JOptionPane.showMessageDialog(
+            	null, sb.toString());
+            }
 	}
 	
 	public Doctor findDoctorById(Long medicalId) {

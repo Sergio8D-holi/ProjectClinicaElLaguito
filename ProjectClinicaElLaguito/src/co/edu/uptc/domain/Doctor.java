@@ -162,6 +162,13 @@ public class Doctor {
 		Doctor auxDoctor = (Doctor) obj;
 		return identificationType == auxDoctor.identificationType && this.medicalId.equals(auxDoctor.medicalId);
 	}
+
+	@Override
+	public String toString() {
+		return "Doctor [identificationType=" + identificationType.getDescription() + ", medicalId=" + medicalId + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", specialty=" + specialty + ", yearsOfExperience="
+				+ yearsOfExperience + "]";
+	}
 	
 	
 	

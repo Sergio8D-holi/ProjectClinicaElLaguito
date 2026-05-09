@@ -59,6 +59,12 @@ public class MedicalAppoinmet {
 			return false;
 		MedicalAppoinmet other = (MedicalAppoinmet) obj;
 		return Objects.equals(idMedicalAppoinmet, other.idMedicalAppoinmet);
+	}
+
+	@Override
+	public String toString() {
+		return "MedicalAppoinmet [idMedicalAppoinmet=" + idMedicalAppoinmet + ", dateTimeAppoinmet=" + dateTimeAppoinmet
+				+ ", patient=" + patient.toString() + ", doctor=" + doctor.toString() + "]";
 	} 	
 	
 	

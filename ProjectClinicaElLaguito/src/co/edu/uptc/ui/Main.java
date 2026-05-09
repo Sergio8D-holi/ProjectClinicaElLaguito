@@ -1,6 +1,7 @@
 package co.edu.uptc.ui;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 import javax.swing.JOptionPane;
@@ -10,6 +11,9 @@ import co.edu.uptc.domain.MedicalAppoinmet;
 import co.edu.uptc.domain.Patient;
 import co.edu.uptc.enums.IdentificationTypeEnum;
 import co.edu.uptc.enums.PriorityEnum;
+import co.edu.uptc.repository.DoctorRepository;
+import co.edu.uptc.repository.MedicalAppoimentRepository;
+import co.edu.uptc.repository.PatientRepository;
 import co.edu.uptc.service.DoctorService;
 import co.edu.uptc.service.MedicalAppoimentService;
 import co.edu.uptc.service.PatientService;
@@ -17,9 +21,9 @@ import co.edu.uptc.service.PatientService;
 public class Main {
 
 	public static void main(String[] args) {
-		PatientService patientService = new PatientService();
-		DoctorService doctorService =  new DoctorService();
-		MedicalAppoimentService medicalAppoimentService = new MedicalAppoimentService();
+		PatientService patientService = new PatientService(new PatientRepository());
+		DoctorService doctorService =  new DoctorService(new DoctorRepository());
+		MedicalAppoimentService medicalAppoimentService = new MedicalAppoimentService(new MedicalAppoimentRepository());
 		boolean flag = true;
 		while (flag) {
 			int numberCrud = Integer.parseInt(JOptionPane.showInputDialog(
@@ -32,7 +36,7 @@ public class Main {
 		            JOptionPane.INFORMATION_MESSAGE
 		        ));
 			switch (numberCrud) {
-			case 1: {
+			case 1: 
 				boolean flagPatient= true;
 				while (flagPatient) {
 					int operationPatient = Integer.parseInt(JOptionPane.showInputDialog(
@@ -48,7 +52,7 @@ public class Main {
 						
 						String optionPatientIdTypeString = JOptionPane.showInputDialog(
 					            null,
-					            "Ingrese el tipo de empleado" + "\n" + "1. Cedula de ciudadania" + "\n" + "2. Tarjeta de identidad" + 
+					            "Ingrese el tipo de id del empleado" + "\n" + "1. Cedula de ciudadania" + "\n" + "2. Tarjeta de identidad" + 
 					            "\n 3. Cedula de extranjeria" + "\n 4. Pasaporte",
 					            "Agregar registro de paciente",
 					            JOptionPane.INFORMATION_MESSAGE );
@@ -129,101 +133,83 @@ public class Main {
 						break;
 
 					case 2: 
-						patientService.findPatientById((long) Integer.parseInt(
+						JOptionPane.showMessageDialog(null, patientService.findPatientById((long) Integer.parseInt(
 								JOptionPane.showInputDialog(null,
-								"Ingrese el id del paciente", JOptionPane.INFORMATION_MESSAGE)));
+								"Ingrese el id del paciente", JOptionPane.INFORMATION_MESSAGE))));;
 						break;
 						
 					case 3:
-						IdentificationTypeEnum newPatientIdType = null;
-						
-						String optionNewPatientIdTypeString = JOptionPane.showInputDialog(
-					            null,
-					            "Ingrese el tipo de id" + "\n" + "1. Cedula de ciudadania" + "\n" + "2. Tarjeta de identidad" + 
-					            "3. Cedula de extranjeria" + "4. Pasaporte",
-					            "Agregar registro de paciente",
-					            JOptionPane.INFORMATION_MESSAGE );
-						
-						int optionNewPatientIdType = Integer.parseInt(optionNewPatientIdTypeString);
-						
-						if (optionNewPatientIdType < 1 || optionNewPatientIdType > 4) {
-							JOptionPane.showMessageDialog(null, "Valor invalido, el registro no se completo");
-						}if (optionNewPatientIdType == 1) {
-							newPatientIdType = IdentificationTypeEnum.CC;
-						}if (optionNewPatientIdType == 2) {
-							newPatientIdType = IdentificationTypeEnum.TI;
-						}if (optionNewPatientIdType == 3) {
-							newPatientIdType = IdentificationTypeEnum.CE;
-						}if (optionNewPatientIdType == 4) {
-							newPatientIdType = IdentificationTypeEnum.PA;
-						}
-						
-						String idNewPatientString = JOptionPane.showInputDialog(
+						String idPatientUpdateString = JOptionPane.showInputDialog(
 					            null,
 					            "Digite el número de identificación del paciente : ",
 					            "Agregar registro de paciente",
 					            JOptionPane.INFORMATION_MESSAGE );
+						
+						Long idPatientUpdate = (long) Integer.parseInt(idPatientUpdateString);
 
-						int idNewPatient = Integer.parseInt(idNewPatientString);
-
-						String firstNameNewPatient = JOptionPane.showInputDialog(
+						Patient patientUpdate = patientService.findPatientById(idPatientUpdate);
+						
+						String firstNameUpdatePatient = JOptionPane.showInputDialog(
 					            null, 
 					            "Digite el primer nombre del paciente : ", 
 					            "Agregar registro de paciente", 
 					            JOptionPane.INFORMATION_MESSAGE );
 						
-						String lastNameNewPatient = JOptionPane.showInputDialog(
+						patientUpdate.setFirstName(firstNameUpdatePatient);
+						
+						String lastNameUpdatePatient = JOptionPane.showInputDialog(
 					            null, 
 					            "Digite el apellido del paciente : ", 
 					            "Agregar registro de paciente", 
 					            JOptionPane.INFORMATION_MESSAGE );
 						
-						String emailNewPatient = JOptionPane.showInputDialog(
+						patientUpdate.setLastName(lastNameUpdatePatient);
+						
+						String emailUpdatePatient = JOptionPane.showInputDialog(
 					            null, 
 					            "Digite el email del cliente : ", 
 					            "Agregar registro de cliente", 
 					            JOptionPane.INFORMATION_MESSAGE );
-					
-						LinkedHashSet<String> newMedicationHistory = new LinkedHashSet<String>();
 						
-						newMedicationHistory.add(JOptionPane.showInputDialog(
+						patientUpdate.setEmail(emailUpdatePatient);
+						
+						patientUpdate.getMedicationHistory().add(JOptionPane.showInputDialog(
 					            null, 
 					            "Digite la medicacion del paciente: ", 
 					            "Agregar registro de paciente", 
 					            JOptionPane.INFORMATION_MESSAGE ));
 								
-						PriorityEnum priorityNewPatient = null;
-						
-						String optionNewPatientPriorityString = JOptionPane.showInputDialog(
+						String optionUpdatePatientPriorityString = JOptionPane.showInputDialog(
 					            null,
 					            "Ingrese la prioridad del paciente" + "\n" + "1. Baja" + "\n" + "2. Media" + 
-					            "3. Alta" + "4. Critica",
+					            "\n 3. Alta" + "\n 4. Critica",
 					            "Agregar registro de paciente",
 					            JOptionPane.INFORMATION_MESSAGE );
-								int optionNewPatientPrority = Integer.parseInt(optionNewPatientPriorityString);
+								int optionUpdatePatientPrority = Integer.parseInt(optionUpdatePatientPriorityString);
 						
-						if (optionNewPatientPrority < 1 || optionNewPatientPrority > 4) {
+						if (optionUpdatePatientPrority < 1 || optionUpdatePatientPrority > 4) {
 							JOptionPane.showMessageDialog(null, "Valor invalido, el registro no se completo");
-						}if (optionNewPatientPrority == 1) {
-							priorityNewPatient = PriorityEnum.LOW;
-						}if (optionNewPatientPrority == 2) {
-							priorityNewPatient = PriorityEnum.MEDIUM;
-						}if (optionNewPatientPrority == 3) {
-							priorityNewPatient = PriorityEnum.HIGH;
-						}if (optionNewPatientPrority == 4) {
-							priorityNewPatient = PriorityEnum.CRITICAL;
+						}if (optionUpdatePatientPrority == 1) {
+							patientUpdate.setPriority(PriorityEnum.LOW);
+						}if (optionUpdatePatientPrority == 2) {
+							patientUpdate.setPriority(PriorityEnum.MEDIUM);
+						}if (optionUpdatePatientPrority == 3) {
+							patientUpdate.setPriority(PriorityEnum.HIGH);
+						}if (optionUpdatePatientPrority == 4) {
+							patientUpdate.setPriority(PriorityEnum.CRITICAL);
 						}
 						
-						patientService.updatePatient(new Patient(newPatientIdType, (long)idNewPatient, firstNameNewPatient,
-								lastNameNewPatient, emailNewPatient, newMedicationHistory, priorityNewPatient));
-					
+						patientService.updatePatient(patientService.findPatientById(idPatientUpdate));
+						
+						break;
+						
 					case 4:
 						patientService.deletePatient((long) Integer.parseInt(
 								JOptionPane.showInputDialog(null,
 								"Ingrese el id del paciente", JOptionPane.INFORMATION_MESSAGE)));
 					
 					case 5:
-						JOptionPane.showMessageDialog(null, patientService.findAll());;
+						patientService.findAll();
 						break;
 						
 					case 6:
@@ -235,7 +221,6 @@ public class Main {
 					}
 				}
 				break;
-			}
 			case 2:
 				boolean flagDoctor = true;
 				while (flagDoctor) {
@@ -309,8 +294,8 @@ public class Main {
 						break;
 						
 					case 2:
-						doctorService.findDoctorById((long) Integer.parseInt(JOptionPane.showInputDialog(null,
-								"Ingrese el id del medico")));
+						JOptionPane.showMessageDialog(null,doctorService.findDoctorById((long) Integer.parseInt(JOptionPane.showInputDialog(null,
+								"Ingrese el id del medico"))));;
 						break;
 						
 					case 3:
@@ -412,7 +397,7 @@ public class Main {
 					            "Agregar registro de cita",
 					            JOptionPane.INFORMATION_MESSAGE ));
 						
-						JOptionPane.showMessageDialog(null, patientService.findAll());
+						patientService.findAll();;
 						
 						Patient patientAux =patientService.findPatientById((long) Integer.parseInt(JOptionPane.showInputDialog(null,
 								"Ingrese el id del paciente que desea asignar a la cita",
@@ -443,8 +428,10 @@ public class Main {
 						break;
 
 					case 2:
-						medicalAppoimentService.findMedicalAppoinmetById((long) Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese "
-								+ "el id de la cita medica",JOptionPane.INFORMATION_MESSAGE)));
+						JOptionPane.showMessageDialog(null, 
+						medicalAppoimentService.findMedicalAppoinmetById((long) Integer.parseInt(
+						JOptionPane.showInputDialog(null, "Ingrese "
+						+ "el id de la cita medica",JOptionPane.INFORMATION_MESSAGE))));;
 						break;
 						
 					case 3: 
@@ -454,7 +441,6 @@ public class Main {
 					            "Agregar registro de cita",
 					            JOptionPane.INFORMATION_MESSAGE ));
 						
-						JOptionPane.showMessageDialog(null, patientService.findAll());
 						
 						Patient patientAuxNew =patientService.findPatientById((long) Integer.parseInt(JOptionPane.showInputDialog(null,
 								"Ingrese el id del paciente que desea asignar a la cita",

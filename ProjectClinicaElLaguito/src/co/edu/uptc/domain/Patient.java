@@ -181,7 +181,7 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "Patient [identificationType=" + identificationType + ", idPatient=" + idPatient + ", firstName="
+		return "Patient [identificationType=" + identificationType.getDescription() + ", idPatient=" + idPatient + ", firstName="
 				+ firstName + ", email=" + email + ", lastName=" + lastName + ", medicationHistory=" + medicationHistory
 				+ ", priority=" + priority + "]";
 	}

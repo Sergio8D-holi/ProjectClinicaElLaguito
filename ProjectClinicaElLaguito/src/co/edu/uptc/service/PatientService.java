@@ -24,8 +24,8 @@ public class PatientService {
 		return this.patientRepository.addPatient(patient);
 	}
 	
-	public Set<Patient> findAll() {
-		return this.patientRepository.findAll();
+	public void findAll() {
+		this.patientRepository.findAll();
 	}
 	
 	public Patient findPatientById(Long idPatient) {

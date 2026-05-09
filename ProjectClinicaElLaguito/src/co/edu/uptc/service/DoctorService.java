@@ -23,8 +23,8 @@ public class DoctorService {
 		return this.doctorRepository.addDoctor(doctor);
 	}
 	
-	public Set<Doctor> findAll() {
-		return this.doctorRepository.findAll();
+	public void findAll() {
+		this.doctorRepository.findAll();
 	}
 	
 	public Doctor findDoctorById(Long medicalId) {
