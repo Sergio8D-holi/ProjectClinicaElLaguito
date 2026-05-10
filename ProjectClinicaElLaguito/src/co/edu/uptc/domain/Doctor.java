@@ -148,7 +148,7 @@ public class Doctor {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(identificationType, medicalId);
+		return Objects.hash(yearsOfExperience, medicalId);
 	}
 
 	@Override

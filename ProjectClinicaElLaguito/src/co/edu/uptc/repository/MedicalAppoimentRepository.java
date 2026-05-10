@@ -4,7 +4,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import co.edu.uptc.domain.MedicalAppoinmet;
+import co.edu.uptc.domain.Patient;
 
 public class MedicalAppoimentRepository {
 	private Set<MedicalAppoinmet> medicalAppoiments = new HashSet<MedicalAppoinmet>();
@@ -22,8 +25,13 @@ public class MedicalAppoimentRepository {
 		return this.medicalAppoiments.add(medicalAppoinmet);
 	}
 	
-	public Set<MedicalAppoinmet> findAll(){
-		return new HashSet<>(medicalAppoiments);
+	public void findAll(){
+		StringBuilder sb = new StringBuilder("Citas medicas:\n");
+        for (MedicalAppoinmet elemento : medicalAppoiments) {
+            sb.append("• ").append(elemento.toString()).append("\n");
+            JOptionPane.showMessageDialog(
+            	null, sb.toString());
+            }
 	}
 	
 	public MedicalAppoinmet findMedicalAppoinmetById(Long idMedicalAppoinmet) {

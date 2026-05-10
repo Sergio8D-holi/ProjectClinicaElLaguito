@@ -46,7 +46,7 @@ public class MedicalAppoinmet {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idMedicalAppoinmet);
+		return Objects.hash(this.idMedicalAppoinmet, this.dateTimeAppoinmet, this.patient.getPriority());
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class MedicalAppoinmet {
 		if (getClass() != obj.getClass())
 			return false;
 		MedicalAppoinmet other = (MedicalAppoinmet) obj;
-		return Objects.equals(idMedicalAppoinmet, other.idMedicalAppoinmet);
+		return Objects.equals(this.idMedicalAppoinmet, other.idMedicalAppoinmet);
 	}
 
 	@Override

@@ -24,8 +24,8 @@ public class MedicalAppoimentService {
 		return this.medicalAppoimentRepository.addMedicalAppoinmet(medicalAppoiment);
 	}
 	
-	public Set<MedicalAppoinmet> findAll() {
-		return this.medicalAppoimentRepository.findAll();
+	public void findAll() {
+		this.medicalAppoimentRepository.findAll();
 	}
 	
 	public MedicalAppoinmet findMedicalAppoinmetById(Long idMedicalAppoinmet) {

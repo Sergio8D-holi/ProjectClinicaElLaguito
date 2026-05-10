@@ -163,7 +163,7 @@ public class Patient {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(this.idPatient);
+		return Objects.hash(this.idPatient, this.priority);
 	}
 
 	@Override
