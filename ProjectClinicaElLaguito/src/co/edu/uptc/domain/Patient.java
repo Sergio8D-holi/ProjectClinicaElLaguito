@@ -69,103 +69,145 @@ public class Patient {
 		this.priority = priority;
 	}
 
-	public String getEmail() {
-		return email;
-	}
+	
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	/**<b>Descripcion: </b> Retorna el valor del tipo de identificacion
-	 * @return identificationType retorna el tipo de identificaion del paciente
-	 * */
+	/**
+	 * Método encargado de retornar el valor de identificationType.
+	 *
+	 * @return valor de identificationType
+	 */
 	public IdentificationTypeEnum getIdentificationType() {
 		return identificationType;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor del tipo de identificacion del paciente
-	 * @param identificationType Representa el nuevo tipo de identificacion del paciente
-	 * */
+	/**
+	 * Método encargado de establecer el valor de identificationType.
+	 *
+	 * @param identificationType nuevo valor de identificationType
+	 */
 	public void setIdentificationType(IdentificationTypeEnum identificationType) {
 		this.identificationType = identificationType;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor de la identificacion
-	 * @return idPatient retorna la identificacion del paciente
-	 * */
+	/**
+	 * Método encargado de retornar el valor de idPatient.
+	 *
+	 * @return valor de idPatient
+	 */
 	public Long getIdPatient() {
 		return idPatient;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor de la identificacion
-	 * @param idPatient Representa la nueva identificacicon del paciente
-	 * */
+	/**
+	 * Método encargado de establecer el valor de idPatient.
+	 *
+	 * @param idPatient nuevo valor de idPatient
+	 */
 	public void setIdPatient(Long idPatient) {
 		this.idPatient = idPatient;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor del Primer nombre
-	 * @return firstName retorna el primer nombre del paciente
-	 * */
+	/**
+	 * Método encargado de retornar el valor de firstName.
+	 *
+	 * @return valor de firstName
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor del primer nombre
-	 * @param firstName Representa el nuevo primer nombre del paciente
-	 * */
+	/**
+	 * Método encargado de establecer el valor de firstName.
+	 *
+	 * @param firstName nuevo valor de firstName
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor del apellido
-	 * @return lastName retorna el apellido del paciente
-	 * */
+	/**
+	 * Método encargado de retornar el valor de email.
+	 *
+	 * @return valor de email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Método encargado de establecer el valor de email.
+	 *
+	 * @param email nuevo valor de email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * Método encargado de retornar el valor de lastName.
+	 *
+	 * @return valor de lastName
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor del apellido
-	 * @param lastName Representa el nuevo apellido del paciente
-	 * */
+	/**
+	 * Método encargado de establecer el valor de lastName.
+	 *
+	 * @param lastName nuevo valor de lastName
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor del historial de medicacion
-	 * @return medicationHistory retorna historial de medicacion del paciente
-	 * */
+	/**
+	 * Método encargado de retornar el valor de medicationHistory.
+	 *
+	 * @return valor de medicationHistory
+	 */
 	public LinkedHashSet<String> getMedicationHistory() {
 		return medicationHistory;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor del historial de medicacion
-	 * @param medicationHistory Representa el nuevo historial de medicacion del paciente
-	 * */
+	/**
+	 * Método encargado de establecer el valor de medicationHistory.
+	 *
+	 * @param medicationHistory nuevo valor de medicationHistory
+	 */
 	public void setMedicationHistory(LinkedHashSet<String> medicationHistory) {
 		this.medicationHistory = medicationHistory;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor de la prioridad
-	 * @return priority retorna la prioridad del paciente
-	 * */
+	/**
+	 * Método encargado de retornar el valor de priority.
+	 *
+	 * @return valor de priority
+	 */
 	public PriorityEnum getPriority() {
 		return priority;
 	}
 
-	/**<b>Descripcion: </b> Retorna el valor del ID
-	 * @param priority Representa la nueva prioridad del paciente
-	 * */
+	/**
+	 * Método encargado de establecer el valor de priority.
+	 *
+	 * @param priority nuevo valor de priority
+	 */
 	public void setPriority(PriorityEnum priority) {
 		this.priority = priority;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(this.idPatient, this.priority);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -179,6 +221,9 @@ public class Patient {
 				&& identificationType == auxPatient.identificationType;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		return "Patient [identificationType=" + identificationType.getDescription() + ", idPatient=" + idPatient + ", firstName="

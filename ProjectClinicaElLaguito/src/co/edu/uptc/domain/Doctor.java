@@ -5,7 +5,7 @@ import java.util.Objects;
 import co.edu.uptc.enums.IdentificationTypeEnum;
 
 /**<b> Descripcion: </b> Clase del modelo que representa la 
- * informacion del mwdico <br>
+ * informacion del medico <br>
  * 
  * @author Sergio8D
 */
@@ -146,11 +146,17 @@ public class Doctor {
 		this.yearsOfExperience = yearsOfExperience;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(yearsOfExperience, medicalId);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -163,6 +169,9 @@ public class Doctor {
 		return identificationType == auxDoctor.identificationType && this.medicalId.equals(auxDoctor.medicalId);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		return "Doctor [identificationType=" + identificationType.getDescription() + ", medicalId=" + medicalId + ", firstName="

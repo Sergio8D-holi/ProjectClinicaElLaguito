@@ -17,12 +17,35 @@ import co.edu.uptc.service.DoctorService;
 import co.edu.uptc.service.MedicalAppoimentService;
 import co.edu.uptc.service.PatientService;
 
+/**
+ * Nombre de la clase: Main
+ *
+ * <p>Calse que encarga de ejeccutar todo el programa </p>
+ *
+ * <p><b>Responsabilidades:</b></p>
+ * <ul>
+ *   <li>[Responsabilidad 1]</li>
+ *   <li>[Responsabilidad 2]</li>
+ * </ul>
+ *
+ * <p><b>Notas:</b></p>
+ * <ul>
+ *   <li>[Consideraciones importantes]</li>
+ * </ul>
+ *
+ * @author SERGIO
+ * @version 1.0
+ * @since May 10, 2026
+ */
 public class Main {
 
 	public static void main(String[] args) {
+		/*Se crean las instancias de los pacientes, medicos y citas medicas*/
 		PatientService patientService = new PatientService(new PatientRepository());
 		DoctorService doctorService =  new DoctorService(new DoctorRepository());
 		MedicalAppoimentService medicalAppoimentService = new MedicalAppoimentService(new MedicalAppoimentRepository());
+		
+		/*Menu del programa*/
 		boolean flag = true;
 		while (flag) {
 			int numberCrud = Integer.parseInt(JOptionPane.showInputDialog(
@@ -36,8 +59,13 @@ public class Main {
 		        ));
 			switch (numberCrud) {
 			case 1: 
+				
+				/*Menu de las operaciones para los pacientes*/
+				
 				boolean flagPatient= true;
+				
 				while (flagPatient) {
+				
 					int operationPatient = Integer.parseInt(JOptionPane.showInputDialog(
 				            null,
 				            "[1] Crear paciente" + "\n[2] Buscar paciente"	+ 
@@ -46,7 +74,10 @@ public class Main {
 				            String.format(" ------- MENU DE PACIENTES -------",
 				            JOptionPane.INFORMATION_MESSAGE)));
 					switch (operationPatient) {
+					
 					case 1:
+						
+						/*Operacion para crear un paciente*/
 						IdentificationTypeEnum patientIdType = null;
 						
 						String optionPatientIdTypeString = JOptionPane.showInputDialog(
@@ -126,18 +157,23 @@ public class Main {
 							priorityPatient = PriorityEnum.CRITICAL;
 						}
 						
+						/*Se agrega el paciente al registro*/
 						patientService.addPatient(new Patient(patientIdType, (long) idPatient,
 								firstNamePatient, lastNamePatient, emailPatient, medicationHistory
 								, priorityPatient));
 						break;
 
 					case 2: 
+						
+						/*Operacion para encontrar al paciente por id*/
 						JOptionPane.showMessageDialog(null, patientService.findPatientById((long) Integer.parseInt(
 								JOptionPane.showInputDialog(null,
 								"Ingrese el id del paciente", JOptionPane.INFORMATION_MESSAGE))));;
 						break;
 						
 					case 3:
+						
+						/*Opercion para obtener la nueva informacion del paciente*/
 						String idPatientUpdateString = JOptionPane.showInputDialog(
 					            null,
 					            "Digite el número de identificación del paciente : ",
@@ -198,20 +234,27 @@ public class Main {
 							patientUpdate.setPriority(PriorityEnum.CRITICAL);
 						}
 						
+						/*Operacion para actualizar el paciente en el registro*/
 						patientService.updatePatient(patientService.findPatientById(idPatientUpdate));
 						
 						break;
 						
 					case 4:
+						
+						/*Operacion para eliminar al paciente*/
 						patientService.deletePatient((long) Integer.parseInt(
 								JOptionPane.showInputDialog(null,
 								"Ingrese el id del paciente", JOptionPane.INFORMATION_MESSAGE)));
 					
 					case 5:
+						
+						/*Operacion para mostrar los pacientes registrados*/
 						patientService.findAll();
 						break;
 						
 					case 6:
+						
+						/*Operacion para salir del menu de pacientes y volver al menu inicial*/
 						flagPatient = false;
 						break;
 					
@@ -221,6 +264,8 @@ public class Main {
 				}
 				break;
 			case 2:
+				
+				/*Menu de las operaciones de los medicos*/
 				boolean flagDoctor = true;
 				while (flagDoctor) {
 					int operationDoctor = Integer.parseInt(JOptionPane.showInputDialog(
@@ -234,6 +279,7 @@ public class Main {
 					switch (operationDoctor) {
 					case 1:
 
+						/*Operacion para crear el nuevo medico*/
 						IdentificationTypeEnum doctorIdType = null;
 						
 						String optionDoctorIdTypeString = JOptionPane.showInputDialog(
@@ -287,18 +333,20 @@ public class Main {
 								+ "los años de experiencia del medico",
 								"Agregar registro del medico"));
 					
-						
+						/*Operacion para agregar al nuevo paciente*/
 						doctorService.addDoctor(new Doctor(doctorIdType, (long) idDoctor, 
 								firstNameDoctor, lastNameDoctor, specialityDoctor, yearsOfExperience));
 						break;
 						
 					case 2:
+						
+						/*Operacion para mostar el doctor encpntrado por su id*/
 						JOptionPane.showMessageDialog(null,doctorService.findDoctorById((long) Integer.parseInt(JOptionPane.showInputDialog(null,
 								"Ingrese el id del medico"))));;
 						break;
 						
 					case 3:
-						
+						 /*Operacion para obtener la nueva informacion del medico ya registrado*/
 						String idDoctorUpdateString = JOptionPane.showInputDialog(
 					            null,
 					            "Digite el número de identificación del paciente : ",
@@ -343,21 +391,27 @@ public class Main {
 						
 						doctorUpdate.setYearsOfExperience(yearsOfExpDoctorUpdate);
 						
+						/*se actualiza la informacion del medico en el registro*/
 						doctorService.updateDoctor(doctorUpdate);
 						
 						break;
 						
 					case 4:
+						
+						/*Operacion para eliminar el medico*/
 						doctorService.deleteDoctor((long) Integer.parseInt(JOptionPane.showInputDialog(null,
 								"Ingrese el id del medico")));
 						break;
 					
 					case 5:
 						
+						/*Mostrar los medicos ya registrados*/
 						doctorService.findAll();
 						break;
 						
 					case 6:
+						
+						/*Operacion para salir del menu de los medicos y volver al menu inicial*/
 						flagDoctor = false;
 						break;
 						
@@ -367,19 +421,23 @@ public class Main {
 				}
 				
 			case 3:
+				
+				/*Menu de las operaciones de las citas medicas*/
 				boolean flagMedicalAppoiment = true;
 				
 				while (flagMedicalAppoiment) {
 					int operationMedicalAppoiment = Integer.parseInt(JOptionPane.showInputDialog(
 				            null,
 				            "[1] Crear cita" + "\n[2] Buscar cita"	+ 
-				            "\n[3] Actualizar cita" + "\n[4] Eliminar cita" + "\n[5] Listar cita"+
+				            "\n[3] Actualizar cita" + "\n[4] Listar citas" + "\n[5] Eliminar cita"+
 				            "\n[6] Salir al menú principal",
 				            String.format(" ------- MENU DE CITAS MEDICAS-------",
 				            JOptionPane.INFORMATION_MESSAGE)));
 					
 					switch (operationMedicalAppoiment) {
 					case 1:
+						
+						/*Operacion para crear la cita medica*/
 						int idMedicalAppoiment = Integer.parseInt(JOptionPane.showInputDialog(
 					            null,
 					            "Digite el número de identificación de la cita medica : ",
@@ -412,11 +470,14 @@ public class Main {
 						
 						LocalDateTime dateAppoiment = LocalDateTime.of(2026, month, day, hour, minutes);
 						
+						/*Operacion para agregar la cita medica al registro*/
 						medicalAppoimentService.addMedicalAppoiment(new MedicalAppoinmet((long) idMedicalAppoiment,
 								dateAppoiment, patientAux, doctorAux));
 						break;
 
 					case 2:
+						
+						/*Operacion para encontrar una cita medica ya registrada*/
 						JOptionPane.showMessageDialog(null, 
 						medicalAppoimentService.findMedicalAppoinmetById((long) Integer.parseInt(
 						JOptionPane.showInputDialog(null, "Ingrese "
@@ -424,6 +485,8 @@ public class Main {
 						break;
 						
 					case 3: 
+						
+						/*Operacion para obtener la nueva informacion de la cita medica ya registrada*/
 						Long idUpdateMedicalAppoiment = (long) Integer.parseInt(JOptionPane.showInputDialog(
 					            null,
 					            "Digite el número de identificación de la cita medica : ",
@@ -458,23 +521,36 @@ public class Main {
 						
 						LocalDateTime dateUpdateAppoiment = LocalDateTime.of(2026, monthUpdate, dayUpdate, hourUpdate, minutesUpdate);
 						
-						medicalAppoinmetUpdate.setTimeAppoinmet(dateUpdateAppoiment);
+						medicalAppoinmetUpdate.setDateTimeAppoinmet(dateUpdateAppoiment);
 						
+						/*Operacion para actualizar la informacion de la cita medica en el registro*/
 						medicalAppoimentService.updateMedicalAppoinmet(medicalAppoinmetUpdate);
 						break;
 						
 					case 4:
+						
+						/*Operacion para mostrar las citas medicas registradas*/
 						medicalAppoimentService.findAll();
 						break;
 						
 					case 5:
-						flagMedicalAppoiment = false;
+						
+						/*Operacion para eliminar la cita medica*/
+						medicalAppoimentService.deleteMedicalAppoinmet((long)Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese El numero de id de la cita medica que desea eliminar")));
 						break;
+						
+					case 6:
+						/*Operacion para cerrar el menu de citas medicas y volver al menu inicial*/
+						flagMedicalAppoiment = false;
+						break; 
+						
 					default:
 						break;
 					}
 				}
 			case 4:
+				
+				/*Operacon para cerrar el programa*/
 				flag = false;
 				break;
 				
