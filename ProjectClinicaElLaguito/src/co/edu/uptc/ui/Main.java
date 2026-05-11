@@ -550,7 +550,7 @@ public class Main {
 				}
 			case 4:
 				
-				/*Operacon para cerrar el programa*/
+				/*Operacion para cerrar el programa*/
 				flag = false;
 				break;
 				

@@ -1,5 +1,6 @@
 package co.edu.uptc.repository;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -75,13 +76,15 @@ public class MedicalAppoimentRepository {
 	 * @return void
 	 * @throws Exception [Condición en la que ocurre]
 	 */
-	public void findAll(){
-		StringBuilder sb = new StringBuilder("Citas medicas:\n");
-        for (MedicalAppoinmet elemento : medicalAppoiments) {
-            sb.append("• ").append(elemento.toString()).append("\n");
-            JOptionPane.showMessageDialog(
-            	null, sb.toString());
-            }
+	public void findAll() {
+	    StringBuilder sb = new StringBuilder("Citas medicas:\n");
+	    this.medicalAppoiments.stream()
+	        .sorted(Comparator.comparing(MedicalAppoinmet::getDateTimeAppoinmet)
+	            .thenComparing((a1, a2) ->
+	                a2.getPatient().getPriority().ordinal() -
+	                a1.getPatient().getPriority().ordinal()))
+	        .forEach(elemento -> sb.append("• ").append(elemento.toString()).append("\n"));
+	    JOptionPane.showMessageDialog(null, sb.toString());
 	}
 	
 	/**

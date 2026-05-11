@@ -202,7 +202,7 @@ public class Patient {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(this.idPatient, this.priority);
+		return Objects.hash(this.idPatient, this.identificationType);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class Patient {
 		if (getClass() != obj.getClass())
 			return false;
 		Patient auxPatient = (Patient) obj;
-		return this.email.equals(auxPatient.email) && this.idPatient.equals(auxPatient.idPatient)
+		return this.idPatient.equals(auxPatient.idPatient)
 				&& identificationType == auxPatient.identificationType;
 	}
 

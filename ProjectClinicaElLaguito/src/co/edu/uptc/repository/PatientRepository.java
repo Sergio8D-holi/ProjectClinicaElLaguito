@@ -74,14 +74,54 @@ public class PatientRepository {
 	 * @return void
 	 * @throws Exception [Condición en la que ocurre]
 	 */
-	public void findAll(){
-		StringBuilder sb = new StringBuilder("Pacientes:\n");
-        for (Patient elemento : patients) {
-            sb.append("• ").append(elemento.toString()).append("\n");
-            JOptionPane.showMessageDialog(
-            	null, sb.toString());
-        }
+	public void findAll() {
+	    StringBuilder sb = new StringBuilder("Pacientes:\n");
+	    this.patients.stream()
+	        .sorted((p1, p2) -> 
+	            p2.getPriority().ordinal() - p1.getPriority().ordinal())
+	        .forEach(elemento -> sb.append("• ").append(elemento.toString()).append("\n"));
+	    JOptionPane.showMessageDialog(null, sb.toString());
+	}
         
+	
+	/**
+	 * <b>Descripción: </b> Método encargado de ... <br>
+	 * 
+	 * @author SERGIO
+	 *
+	 * @param email
+	 * @return
+	 * @return boolean
+	 * @throws Exception [Condición en la que ocurre]
+	 */
+	public boolean existsEmail(String email) {
+	    for (Patient p : this.patients) {
+	        if (p.getEmail().equals(email)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+
+	
+	/**
+	 * <b>Descripción: </b> Método encargado de ... <br>
+	 * 
+	 * @author SERGIO
+	 *
+	 * @param email
+	 * @param idPatient
+	 * @return
+	 * @return boolean
+	 * @throws Exception [Condición en la que ocurre]
+	 */
+	public boolean existsEmail(String email, Long idPatient) {
+	    for (Patient p : this.patients) {
+	        if (p.getEmail().equals(email) && !p.getIdPatient().equals(idPatient)) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 	
 	/**

@@ -63,7 +63,11 @@ public class PatientService {
 	 * @throws Exception [Condición en la que ocurre]
 	 */
 	public boolean addPatient(Patient patient) {
-		return this.patientRepository.addPatient(patient);
+		if (!patientRepository.existsEmail(patient.getEmail())) {
+	        patientRepository.addPatient(patient);
+	        return true;
+	    }
+	    return false;
 	}
 	
 	/**
@@ -109,11 +113,12 @@ public class PatientService {
 	 */
 	public boolean updatePatient(Patient patient) {
 		Patient oldPatient = this.patientRepository.findPatientById(patient.getIdPatient());
-		if(!Objects.isNull(oldPatient)) {
-			this.patientRepository.updatePatient(patient);
-			return true;
-		}
-		return false;
+	    if (!Objects.isNull(oldPatient) && 
+	        !patientRepository.existsEmail(patient.getEmail(), patient.getIdPatient())) {
+	        this.patientRepository.updatePatient(patient);
+	        return true;
+	    }
+	    return false;
 	}
 	
 	/**
